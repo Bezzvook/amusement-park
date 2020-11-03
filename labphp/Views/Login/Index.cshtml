@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Персоналу";
+}
+
+<div class="centerForm">
+    <h1>Авторизация персонала</h1>
+    <div class="form-group">
+        <form method="post" asp-action="Index">
+            <p>
+                <input type="text" name="login" placeholder="Логин" class="form-control" />
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Пароль" class="form-control" />
+            </p>
+            <button type="submit" class="form-control">Авторизоваться</button>
+        </form>
+    </div>
+</div>

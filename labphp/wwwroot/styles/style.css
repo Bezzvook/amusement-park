@@ -1,0 +1,114 @@
+﻿body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100%;
+}
+
+.bg {
+    background-color: #2C3E50;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+.content {
+    max-width: 1000px;
+    min-width: 150px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px 20px 5px 20px;
+    min-height: 100%;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.lNav {
+    float: left;
+}
+
+.w-45 {
+    width: 45%;
+}
+
+.rNav {
+    text-align: right;
+}
+
+.rNav ul li{
+    display: inline;
+}
+
+.navbar-brand {
+    color: white;
+    margin: 0 10px;
+}
+
+.centerForm {
+    margin: auto;
+    width: 50%;
+}
+
+.texti {
+    text-indent: 20px;
+}
+
+.center{
+    text-align:center;
+}
+
+.header {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2C3E50;
+    margin: 0 auto;
+    padding: 15px 0 5px 0;
+}
+
+.headwrapper {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.footer {
+    width: 100%;
+    position: absolute;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-color: #2C3E50;
+    padding: 15px 0 5px 0;
+    height: 95px;
+}
+
+.footwrapper {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.footer p {
+    margin: 5px;
+}
+
+.footer li {
+    list-style-type: none;
+}
+/*Галерея*/
+.thumb img {
+    -webkit-filter: grayscale(0);
+    filter: none;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.thumb img:hover {
+    -webkit-filter: grayscale(1);
+    filter: contrast(120%);
+}
+
+.thumb {
+    padding: 5px;
+}
+/*Галерея*/

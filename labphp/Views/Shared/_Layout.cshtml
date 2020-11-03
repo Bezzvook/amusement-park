@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @ViewData["Title"] - Amusement Park
+    </title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/styles/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="headwrapper">
+                <div class="lNav">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Главная страница</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand" asp-controller="Description" asp-action="Index">Аттрационы</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand" asp-controller="Staff" asp-action="Index">Забронировать</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="rNav">
+                    <ul>
+                        <li>
+                            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Посмотреть бронь</a>
+                        </li>
+                        <li>
+                            <a class="navbar-brand" asp-controller="Staff" asp-action="Index">Персоналу</a>
+                        </li>
+                        @if (@User.Identity.IsAuthenticated)
+                        {
+                        <li>
+                            <form class="navbar-brand" asp-controller="Login" asp-action="Logout" method="post"><button class="btn btn-danger">Выход</button></form>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            @RenderBody()
+
+        </div>
+        <div class="footer">
+            <div class="footwrapper">
+                <div class="lNav">
+                </div>
+
+                <div class="rNav">
+                    <p>
+                        <i class="fa fa-telegram" aria-hidden="true"> bezzvook</i>
+                    </p>
+                    <p>
+                        <i class="fa fa-google" aria-hidden="true"> dbevzyukwork@gmail.com</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+</body>
+</html>

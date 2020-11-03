@@ -1,0 +1,99 @@
+﻿@model labphp.Models.Booking
+@{
+    ViewData["Title"] = "Главная страница";
+}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<div class="texti">
+    <p>
+        Здесь вы найдете полный перечень аттракционов, с описанием и фото, из которых состоит этот удивительный парк аттракционов.
+        Также вы можете забронировать билеты на предстоящие мероприятия.
+    </p>
+    <h2 class="center">
+        Галерея
+    </h2>
+</div>
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions1.webp">
+            <img class="img-fluid" src="~/images/attractions1.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions2.webp">
+            <img class="img-fluid" src="~/images/attractions2.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions3.webp">
+            <img class="img-fluid" src="~/images/attractions3.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions4.webp">
+            <img class="img-fluid" src="~/images/attractions4.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions5.webp">
+            <img class="img-fluid" src="~/images/attractions5.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions6.webp">
+            <img class="img-fluid" src="~/images/attractions6.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions7.webp">
+            <img class="img-fluid" src="~/images/attractions7.webp" width="250" height="200" />
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mb-4 thumb">
+        <a data-fancybox="gallery" href="~/images/attractions8.webp">
+            <img class="img-fluid" src="~/images/attractions8.webp" width="250" height="200" />
+        </a>
+    </div>
+</div>
+
+<div class="centerForm">
+    <h1>Бронирование билетов</h1>
+    <div class="form-group">
+        <form method="post" asp-action="AddBooking">
+            <p>
+                <label asp-for="FullName">ФИО</label>
+                <input asp-for="FullName" class="form-control" placeholder="Иванов Иван Иванович" />
+            </p>
+            <p>
+                <label asp-for="PhoneNumber">Номер телефона</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="+380XXXXXXXXX" />
+            </p>
+            <p>
+                <label asp-for="Email">Электронная почта</label>
+                <input asp-for="Email" class="form-control" placeholder="example@gmail.com" />
+            </p>
+            <p>
+                <label asp-for="BookingDate">Дата</label>
+                <input asp-for="BookingDate" class="form-control" />
+            </p>
+            <p>
+                <label asp-for="AdultTickets">Взрослых</label>
+                <input asp-for="AdultTickets" class="form-control" placeholder="1" />
+            </p>
+            <p>
+                <label asp-for="ChildTickets">Детских</label>
+                <input asp-for="ChildTickets" class="form-control" placeholder="0" />
+            </p>
+            <p>
+                <label asp-for="SubscriptionId">Абонемент</label>
+                @Html.DropDownList("SubscriptionId", Select.names, new { @class = "form-control" })
+            </p>
+            <button type="submit" class="form-control">Забронировать</button>
+        </form>
+    </div>
+</div>
+
+
+
