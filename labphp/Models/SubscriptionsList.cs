@@ -7,8 +7,9 @@ namespace AmusementPark.Models
 {
     public class SubscriptionsList
     {
-        public Subscriptions Subscription { get; set; }
-        public List<Attractions> attractions { get; set; }
-        public List<Services> services { get; set; }
+        public Subscription Subscription { get; set; }
+
+        public List<Attraction> Attractions { get; set; }
+        public List<Service> Services { get; set; }
     }
 }

@@ -5,15 +5,15 @@
     <h2>@item.Subscription.Name</h2>
     <div>
         <p class="m-0 p-1"> @item.Subscription.Description</p>
-        <p class="m-0 p-1"><b>Количество аттракционов:</b> @item.attractions.Count</p>
-        <p class="m-0 p-1"><b>Количество дополнительных услуг:</b> @item.attractions.Count</p>
+        <p class="m-0 p-1"><b>Количество аттракционов:</b> @item.Attractions.Count</p>
+        <p class="m-0 p-1"><b>Количество дополнительных услуг:</b> @item.Attractions.Count</p>
         <p class="m-0 p-1"><b>Стоимость взрослого билета:</b> @item.Subscription.AdultPrice</p>
         <p class="m-0 p-1"><b>Стоимость детского билета:</b> @item.Subscription.ChildPrice</p>
     </div>
     <p>
         <h4>Аттракционы:</h4>
     </p>
-    @foreach (var item1 in item.attractions)
+    @foreach (var item1 in item.Attractions)
     {
         <div>
             <h5><b>@item1.Name</b></h5>
@@ -26,7 +26,7 @@
     <p>
         <h4>Дополнительные услуги</h4>
     </p>
-    @foreach (var item1 in item.services)
+    @foreach (var item1 in item.Services)
     {
         <div>
             <h5><b>@item1.Name</b></h5>
