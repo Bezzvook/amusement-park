@@ -18,5 +18,7 @@ namespace AmusementPark.Models
         public int SubscriptionId { get; set; }
         public bool Checked { get; set; }
         public bool Accepted { get; set; }
+
+        public Subscription Subscription { get; set; }
     }
 }

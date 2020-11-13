@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmusementPark.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201113154844_Init")]
+    [Migration("20201113164926_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,6 +114,8 @@ namespace AmusementPark.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionId");
 
                     b.ToTable("Booking");
                 });
@@ -369,6 +371,15 @@ namespace AmusementPark.Migrations
                             SubscriptionId = 2,
                             Id = 8
                         });
+                });
+
+            modelBuilder.Entity("AmusementPark.Models.Booking", b =>
+                {
+                    b.HasOne("AmusementPark.Models.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AmusementPark.Models.SubscriptionAttraction", b =>

@@ -113,6 +113,8 @@ namespace AmusementPark.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SubscriptionId");
+
                     b.ToTable("Booking");
                 });
 
@@ -367,6 +369,15 @@ namespace AmusementPark.Migrations
                             SubscriptionId = 2,
                             Id = 8
                         });
+                });
+
+            modelBuilder.Entity("AmusementPark.Models.Booking", b =>
+                {
+                    b.HasOne("AmusementPark.Models.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AmusementPark.Models.SubscriptionAttraction", b =>

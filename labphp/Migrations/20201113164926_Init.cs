@@ -23,27 +23,6 @@ namespace AmusementPark.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Booking",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    BookingDate = table.Column<DateTime>(nullable: false),
-                    AdultTickets = table.Column<int>(nullable: false),
-                    ChildTickets = table.Column<int>(nullable: false),
-                    SubscriptionId = table.Column<int>(nullable: false),
-                    Checked = table.Column<bool>(nullable: false),
-                    Accepted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Clients",
                 columns: table => new
                 {
@@ -83,6 +62,33 @@ namespace AmusementPark.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Subscriptions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Booking",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    BookingDate = table.Column<DateTime>(nullable: false),
+                    AdultTickets = table.Column<int>(nullable: false),
+                    ChildTickets = table.Column<int>(nullable: false),
+                    SubscriptionId = table.Column<int>(nullable: false),
+                    Checked = table.Column<bool>(nullable: false),
+                    Accepted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Booking_Subscriptions_SubscriptionId",
+                        column: x => x.SubscriptionId,
+                        principalTable: "Subscriptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,6 +205,11 @@ namespace AmusementPark.Migrations
                     { 3, 1, 3 },
                     { 6, 2, 8 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Booking_SubscriptionId",
+                table: "Booking",
+                column: "SubscriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubscriptionAttractions_SubscriptionId",
