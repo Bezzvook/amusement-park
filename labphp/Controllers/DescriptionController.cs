@@ -20,7 +20,7 @@ namespace AmusementPark.Controllers
             List<int> indexes = new List<int>(); //Индексы абонементов в БД
 
             //Заполнение индексов
-            foreach (Subscriptions item in db.Subscriptions.ToList())
+            foreach (Subscription item in db.Subscriptions.ToList())
             {
                 indexes.Add(item.Id);
             }
@@ -30,7 +30,7 @@ namespace AmusementPark.Controllers
             {
                 //Список всех аттракционов для каждого абонемента
                 var result1 = from sb in db.Subscriptions
-                             join al in db.AttractionList on sb.Id equals al.SubscriptionId
+                             join al in db.SubscriptionAttractions on sb.Id equals al.SubscriptionId
                              join rd in db.Attractions on al.AttractionId equals rd.Id
                              where sb.Id == indexes[i]
                              select new
@@ -43,7 +43,7 @@ namespace AmusementPark.Controllers
 
                 //Список всех услуг для каждого абонемента
                 var result2 = from sb in db.Subscriptions
-                              join sl in db.ServiceList on sb.Id equals sl.SubscriptionId
+                              join sl in db.SubscriptionServices on sb.Id equals sl.SubscriptionId
                               join sv in db.Services on sl.ServiceId equals sv.Id
                               where sb.Id == indexes[i]
                               select new
@@ -57,15 +57,15 @@ namespace AmusementPark.Controllers
                 subscriptionsLists.Add(new SubscriptionsList()
                     {
                         Subscription = db.Subscriptions.ToList()[i],
-                        attractions = new List<Attractions>(),
-                        services = new List<Services>()
+                        Attractions = new List<Attraction>(),
+                        Services = new List<Service>()
                     });
 
                 //Заполнение списка каждого аттракциона
                 foreach (var item in result1)
                 {
-                    subscriptionsLists[i].attractions.Add(
-                        new Attractions
+                    subscriptionsLists[i].Attractions.Add(
+                        new Attraction
                         {
                             Id = item.RideId,
                             Name = item.RideName,
@@ -77,8 +77,8 @@ namespace AmusementPark.Controllers
                 //Заполнение списка каждой услуги
                 foreach (var item in result2)
                 {
-                    subscriptionsLists[i].services.Add(
-                        new Services()
+                    subscriptionsLists[i].Services.Add(
+                        new Service()
                         {
                             Id = item.ServiceId,
                             Name = item.ServiceName,

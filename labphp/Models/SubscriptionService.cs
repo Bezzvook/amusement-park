@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace AmusementPark.Models
 {
-    public class ServiceList
+    public class SubscriptionService
     {
         public int Id { get; set; }
+
+        public Subscription Subscription { get; set; }
         public int SubscriptionId { get; set; }
+
+        public Service Service { get; set; }
         public int ServiceId { get; set; }
     }
 }
