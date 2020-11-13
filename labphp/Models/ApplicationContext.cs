@@ -24,6 +24,14 @@ namespace AmusementPark.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Subscription>()
+            .Property(p => p.AdultPrice)
+            .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Subscription>()
+            .Property(p => p.ChildPrice)
+            .HasColumnType("decimal(18,2)");
+
             modelBuilder.Entity<SubscriptionAttraction>()
                 .HasKey(c => new { c.AttractionId, c.SubscriptionId });
             modelBuilder.Entity<SubscriptionService>()
