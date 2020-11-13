@@ -2,7 +2,7 @@
 
 @foreach (var item in Model)
 {
-    <h2 class="w-100 text-light center bg">@item.Subscription.Name</h2>
+    <h2>@item.Subscription.Name</h2>
     <div>
         <p class="m-0 p-1"> @item.Subscription.Description</p>
         <p class="m-0 p-1"><b>Количество аттракционов:</b> @item.attractions.Count</p>
@@ -16,7 +16,7 @@
     @foreach (var item1 in item.attractions)
     {
         <div>
-            <h5><b><u>@item1.Name</u></b></h5>
+            <h5><b>@item1.Name</b></h5>
             <p class="m-0 p-1">@item1.Description</p>
             <p class="m-0 p-1"><b>Максимальное количество мест:</b> @item1.MaxFreeSeat</p>
         </div>
@@ -29,7 +29,7 @@
     @foreach (var item1 in item.services)
     {
         <div>
-            <h5><b><u>@item1.Name</u></b></h5>
+            <h5><b>@item1.Name</b></h5>
             <p class="m-0 p-1">@item1.Description</p>
         </div>
     }

@@ -51,6 +51,7 @@ namespace AmusementPark.Controllers
                     PhoneNumber = booking.PhoneNumber,
                     Link = "linkdasdas"
                 });
+                db.SaveChanges();
 
                 booking.Checked = false;
                 booking.Accepted = false;
