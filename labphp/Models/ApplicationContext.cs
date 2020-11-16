@@ -58,28 +58,28 @@ namespace AmusementPark.Models
 
             modelBuilder.Entity<SubscriptionAttraction>().HasData(
                 // Subscription Лайт
-                new Models.SubscriptionAttraction { Id = 1, AttractionId = 1, SubscriptionId = 1 },
-                new Models.SubscriptionAttraction { Id = 2, AttractionId = 2, SubscriptionId = 1 },
-                new Models.SubscriptionAttraction { Id = 3, AttractionId = 3, SubscriptionId = 1 },
+                new Models.SubscriptionAttraction { AttractionId = 1, SubscriptionId = 1 },
+                new Models.SubscriptionAttraction { AttractionId = 2, SubscriptionId = 1 },
+                new Models.SubscriptionAttraction { AttractionId = 3, SubscriptionId = 1 },
                 // Subscription Люкс
-                new Models.SubscriptionAttraction { Id = 4, AttractionId = 1, SubscriptionId = 2 },
-                new Models.SubscriptionAttraction { Id = 5, AttractionId = 2, SubscriptionId = 2 },
-                new Models.SubscriptionAttraction { Id = 6, AttractionId = 3, SubscriptionId = 2 },
-                new Models.SubscriptionAttraction { Id = 7, AttractionId = 4, SubscriptionId = 2 },
-                new Models.SubscriptionAttraction { Id = 8, AttractionId = 5, SubscriptionId = 2 });
+                new Models.SubscriptionAttraction { AttractionId = 1, SubscriptionId = 2 },
+                new Models.SubscriptionAttraction { AttractionId = 2, SubscriptionId = 2 },
+                new Models.SubscriptionAttraction { AttractionId = 3, SubscriptionId = 2 },
+                new Models.SubscriptionAttraction { AttractionId = 4, SubscriptionId = 2 },
+                new Models.SubscriptionAttraction { AttractionId = 5, SubscriptionId = 2 });
 
             modelBuilder.Entity<SubscriptionService>().HasData(
                 // Subscription Лайт
-                new Models.SubscriptionService { Id = 1, ServiceId = 1, SubscriptionId = 1 },
-                new Models.SubscriptionService { Id = 2, ServiceId = 2, SubscriptionId = 1 },
-                new Models.SubscriptionService { Id = 3, ServiceId = 3, SubscriptionId = 1 },
+                new Models.SubscriptionService { ServiceId = 1, SubscriptionId = 1 },
+                new Models.SubscriptionService { ServiceId = 2, SubscriptionId = 1 },
+                new Models.SubscriptionService { ServiceId = 3, SubscriptionId = 1 },
                 // Subscription Люкс
-                new Models.SubscriptionService { Id = 4, ServiceId = 1, SubscriptionId = 2 },
-                new Models.SubscriptionService { Id = 5, ServiceId = 2, SubscriptionId = 2 },
-                new Models.SubscriptionService { Id = 6, ServiceId = 3, SubscriptionId = 2 },
-                new Models.SubscriptionService { Id = 7, ServiceId = 4, SubscriptionId = 2 },
-                new Models.SubscriptionService { Id = 8, ServiceId = 5, SubscriptionId = 2 },
-                new Models.SubscriptionService { Id = 8, ServiceId = 6, SubscriptionId = 2 });
+                new Models.SubscriptionService { ServiceId = 1, SubscriptionId = 2 },
+                new Models.SubscriptionService { ServiceId = 2, SubscriptionId = 2 },
+                new Models.SubscriptionService { ServiceId = 3, SubscriptionId = 2 },
+                new Models.SubscriptionService { ServiceId = 4, SubscriptionId = 2 },
+                new Models.SubscriptionService { ServiceId = 5, SubscriptionId = 2 },
+                new Models.SubscriptionService { ServiceId = 6, SubscriptionId = 2 });
         }
     }
 }
