@@ -15,8 +15,10 @@ namespace AmusementPark.Models
         public DateTime BookingDate { get; set; }
         public int AdultTickets { get; set; }
         public int ChildTickets { get; set; }
-        public int SubscriptionId { get; set; }
         public bool Checked { get; set; }
         public bool Accepted { get; set; }
+
+        public Subscription Subscription { get; set; }
+        public int SubscriptionId { get; set; }
     }
 }
