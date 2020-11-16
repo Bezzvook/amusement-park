@@ -7,8 +7,6 @@ namespace AmusementPark.Models
 {
     public class SubscriptionAttraction
     {
-        public int Id { get; set; }
-
         public Subscription Subscription { get; set; }
         public int SubscriptionId { get; set; }
 
