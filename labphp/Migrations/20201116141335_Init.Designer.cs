@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmusementPark.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201113164926_Init")]
+    [Migration("20201116141335_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,9 +239,6 @@ namespace AmusementPark.Migrations
                     b.Property<int>("SubscriptionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.HasKey("AttractionId", "SubscriptionId");
 
                     b.HasIndex("SubscriptionId");
@@ -252,50 +249,42 @@ namespace AmusementPark.Migrations
                         new
                         {
                             AttractionId = 1,
-                            SubscriptionId = 1,
-                            Id = 1
+                            SubscriptionId = 1
                         },
                         new
                         {
                             AttractionId = 2,
-                            SubscriptionId = 1,
-                            Id = 2
+                            SubscriptionId = 1
                         },
                         new
                         {
                             AttractionId = 3,
-                            SubscriptionId = 1,
-                            Id = 3
+                            SubscriptionId = 1
                         },
                         new
                         {
                             AttractionId = 1,
-                            SubscriptionId = 2,
-                            Id = 4
+                            SubscriptionId = 2
                         },
                         new
                         {
                             AttractionId = 2,
-                            SubscriptionId = 2,
-                            Id = 5
+                            SubscriptionId = 2
                         },
                         new
                         {
                             AttractionId = 3,
-                            SubscriptionId = 2,
-                            Id = 6
+                            SubscriptionId = 2
                         },
                         new
                         {
                             AttractionId = 4,
-                            SubscriptionId = 2,
-                            Id = 7
+                            SubscriptionId = 2
                         },
                         new
                         {
                             AttractionId = 5,
-                            SubscriptionId = 2,
-                            Id = 8
+                            SubscriptionId = 2
                         });
                 });
 
@@ -305,9 +294,6 @@ namespace AmusementPark.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("SubscriptionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("ServiceId", "SubscriptionId");
@@ -320,56 +306,47 @@ namespace AmusementPark.Migrations
                         new
                         {
                             ServiceId = 1,
-                            SubscriptionId = 1,
-                            Id = 1
+                            SubscriptionId = 1
                         },
                         new
                         {
                             ServiceId = 2,
-                            SubscriptionId = 1,
-                            Id = 2
+                            SubscriptionId = 1
                         },
                         new
                         {
                             ServiceId = 3,
-                            SubscriptionId = 1,
-                            Id = 3
+                            SubscriptionId = 1
                         },
                         new
                         {
                             ServiceId = 1,
-                            SubscriptionId = 2,
-                            Id = 4
+                            SubscriptionId = 2
                         },
                         new
                         {
                             ServiceId = 2,
-                            SubscriptionId = 2,
-                            Id = 5
+                            SubscriptionId = 2
                         },
                         new
                         {
                             ServiceId = 3,
-                            SubscriptionId = 2,
-                            Id = 6
+                            SubscriptionId = 2
                         },
                         new
                         {
                             ServiceId = 4,
-                            SubscriptionId = 2,
-                            Id = 7
+                            SubscriptionId = 2
                         },
                         new
                         {
                             ServiceId = 5,
-                            SubscriptionId = 2,
-                            Id = 8
+                            SubscriptionId = 2
                         },
                         new
                         {
                             ServiceId = 6,
-                            SubscriptionId = 2,
-                            Id = 8
+                            SubscriptionId = 2
                         });
                 });
 

@@ -76,9 +76,9 @@ namespace AmusementPark.Migrations
                     BookingDate = table.Column<DateTime>(nullable: false),
                     AdultTickets = table.Column<int>(nullable: false),
                     ChildTickets = table.Column<int>(nullable: false),
-                    SubscriptionId = table.Column<int>(nullable: false),
                     Checked = table.Column<bool>(nullable: false),
-                    Accepted = table.Column<bool>(nullable: false)
+                    Accepted = table.Column<bool>(nullable: false),
+                    SubscriptionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,8 +96,7 @@ namespace AmusementPark.Migrations
                 columns: table => new
                 {
                     SubscriptionId = table.Column<int>(nullable: false),
-                    AttractionId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
+                    AttractionId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,8 +120,7 @@ namespace AmusementPark.Migrations
                 columns: table => new
                 {
                     SubscriptionId = table.Column<int>(nullable: false),
-                    ServiceId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
+                    ServiceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,33 +175,33 @@ namespace AmusementPark.Migrations
 
             migrationBuilder.InsertData(
                 table: "SubscriptionAttractions",
-                columns: new[] { "AttractionId", "SubscriptionId", "Id" },
+                columns: new[] { "AttractionId", "SubscriptionId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1 },
-                    { 5, 2, 8 },
-                    { 4, 2, 7 },
-                    { 2, 2, 5 },
-                    { 1, 2, 4 },
-                    { 3, 2, 6 },
-                    { 3, 1, 3 },
-                    { 2, 1, 2 }
+                    { 1, 1 },
+                    { 5, 2 },
+                    { 4, 2 },
+                    { 2, 2 },
+                    { 1, 2 },
+                    { 3, 2 },
+                    { 3, 1 },
+                    { 2, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "SubscriptionServices",
-                columns: new[] { "ServiceId", "SubscriptionId", "Id" },
+                columns: new[] { "ServiceId", "SubscriptionId" },
                 values: new object[,]
                 {
-                    { 2, 1, 2 },
-                    { 1, 1, 1 },
-                    { 5, 2, 8 },
-                    { 1, 2, 4 },
-                    { 2, 2, 5 },
-                    { 3, 2, 6 },
-                    { 4, 2, 7 },
-                    { 3, 1, 3 },
-                    { 6, 2, 8 }
+                    { 2, 1 },
+                    { 1, 1 },
+                    { 5, 2 },
+                    { 1, 2 },
+                    { 2, 2 },
+                    { 3, 2 },
+                    { 4, 2 },
+                    { 3, 1 },
+                    { 6, 2 }
                 });
 
             migrationBuilder.CreateIndex(
