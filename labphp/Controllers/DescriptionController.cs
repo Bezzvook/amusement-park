@@ -13,7 +13,10 @@ namespace AmusementPark.Controllers
         public DescriptionController(ApplicationContext context)
         {
             db = context;
+            StaticData.Attractions = db.Attractions.ToList();
+            StaticData.Services = db.Services.ToList();
         }
+
         public IActionResult Index()
         {
             List<SubscriptionsList> subscriptionsLists = db.Subscriptions.Select(subscription => new SubscriptionsList

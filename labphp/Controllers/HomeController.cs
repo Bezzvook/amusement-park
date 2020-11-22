@@ -16,10 +16,10 @@ namespace AmusementPark.Controllers
         public HomeController(ApplicationContext context)
         {
             db = context;
-            Select.names.Clear();
+            StaticData.names.Clear();
             foreach (var item in db.Subscriptions)
             {
-                Select.names.Add(new SelectListItem
+                StaticData.names.Add(new SelectListItem
                 {
                     Text = item.Name,
                     Value = item.Id.ToString()

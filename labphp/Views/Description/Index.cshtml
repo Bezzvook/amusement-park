@@ -1,36 +1,85 @@
 ﻿@model IEnumerable<AmusementPark.Models.SubscriptionsList>
 
-@foreach (var item in Model)
-{
-    <h2>@item.Subscription.Name</h2>
-    <div>
-        <p class="m-0 p-1"> @item.Subscription.Description</p>
-        <p class="m-0 p-1"><b>Количество аттракционов:</b> @item.Attractions.Count</p>
-        <p class="m-0 p-1"><b>Количество дополнительных услуг:</b> @item.Attractions.Count</p>
-        <p class="m-0 p-1"><b>Стоимость взрослого билета:</b> @item.Subscription.AdultPrice</p>
-        <p class="m-0 p-1"><b>Стоимость детского билета:</b> @item.Subscription.ChildPrice</p>
-    </div>
-    <p>
-        <h4>Аттракционы:</h4>
-    </p>
-    @foreach (var item1 in item.Attractions)
-    {
-        <div>
-            <h5><b>@item1.Name</b></h5>
-            <p class="m-0 p-1">@item1.Description</p>
-            <p class="m-0 p-1"><b>Максимальное количество мест:</b> @item1.MaxFreeSeat</p>
-        </div>
-        <br />
-    }
+<h1 class="center">Описание абонементов</h1>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th width="30%">Название</th>
+            <th width="15%">Цена взрослого билета</th>
+            <th width="15%">Цена детского билета</th>
+            <th>Список аттракционов</th>
+            <th width="15%">Список услуг</th>
+        </tr>
+    </thead>
 
-    <p>
-        <h4>Дополнительные услуги</h4>
-    </p>
-    @foreach (var item1 in item.Services)
-    {
-        <div>
-            <h5><b>@item1.Name</b></h5>
-            <p class="m-0 p-1">@item1.Description</p>
-        </div>
-    }
-}
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><b>@item.Subscription.Name</b></td>
+                <td>@item.Subscription.AdultPrice</td>
+                <td>@item.Subscription.ChildPrice</td>
+                <td>
+                    @foreach (var item1 in item.Attractions)
+                    {
+                        <p>@item1.Name</p>
+                    }
+                </td>
+                <td>
+                    @foreach (var item1 in item.Services)
+                    {
+                        <p>@item1.Name</p>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<h1 class="center">Описание аттрационов</h1>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Максимальное количество мест</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item1 in StaticData.Attractions)
+        {
+            <tr>
+
+                <td width="30%">@item1.Name</td>
+                <td>@item1.Description</td>
+                <td width="10%">@item1.MaxFreeSeat</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<h1 class="center">Описание сервисов</h1>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Описание</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item1 in StaticData.Services)
+        {
+            <tr>
+
+                <td width="30%">@item1.Name</td>
+                <td>@item1.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

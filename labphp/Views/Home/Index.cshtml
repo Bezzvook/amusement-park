@@ -88,7 +88,7 @@
             </p>
             <p>
                 <label asp-for="SubscriptionId">Абонемент</label>
-                @Html.DropDownList("SubscriptionId", Select.names, new { @class = "form-control" })
+                @Html.DropDownList("SubscriptionId", StaticData.names, new { @class = "form-control" })
             </p>
             <button type="submit" class="form-control">Забронировать</button>
         </form>
