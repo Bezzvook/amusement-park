@@ -18,9 +18,10 @@ namespace AmusementPark.Models
         public DbSet<SubscriptionService> SubscriptionServices { get; set; }
         public DbSet<SubscriptionAttraction> SubscriptionAttractions { get; set; }
 
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureCreated();            
+            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
