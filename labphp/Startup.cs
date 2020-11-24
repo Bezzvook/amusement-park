@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AmusementPark.Models;
 using Microsoft.EntityFrameworkCore;
+using AmusementPark.Features;
 
 namespace AmusementPark
 {
@@ -40,6 +41,8 @@ namespace AmusementPark
                 );
 
             services.AddControllersWithViews();
+
+            GmailData.Password = Configuration["GmailPass"];
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

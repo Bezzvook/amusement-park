@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AmusementPark.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using AmusementPark.Features;
+using System.Web;
 
 namespace AmusementPark.Controllers
 {
@@ -16,6 +18,7 @@ namespace AmusementPark.Controllers
         public HomeController(ApplicationContext context)
         {
             db = context;
+
             StaticData.names.Clear();
             foreach (var item in db.Subscriptions)
             {
@@ -26,6 +29,7 @@ namespace AmusementPark.Controllers
                 });
             }
         }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -35,7 +39,7 @@ namespace AmusementPark.Controllers
         [HttpPost]
         public IActionResult AddBooking(Booking booking)
         {
-            if (db.Clients.Any(ph => ph.PhoneNumber == booking.PhoneNumber))
+            if (db.Clients.Any(ph => ph.PhoneNumber == booking.Client.PhoneNumber))
             {
                 booking.Checked = false;
                 booking.Accepted = false;
@@ -46,18 +50,21 @@ namespace AmusementPark.Controllers
 
             else
             {
-                db.Clients.Add(new Clients() 
-                { 
-                    PhoneNumber = booking.PhoneNumber,
-                    Link = "linkdasdas"
-                });
-                db.SaveChanges();
+                string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                Random random = new Random();
+
+                char[] chars = new char[36];
+                for (int i = 0; i < 36; i++)
+                {
+                    chars[i] = validChars[random.Next(0, validChars.Length)];
+                }
+
+                booking.Client.Link = new string(chars);
 
                 booking.Checked = false;
                 booking.Accepted = false;
 
                 db.Booking.Add(booking);
-
                 db.SaveChanges();
             }
             return View();

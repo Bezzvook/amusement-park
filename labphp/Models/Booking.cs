@@ -10,8 +10,6 @@ namespace AmusementPark.Models
     {
         public int Id { get; set; }
         public string FullName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
         public DateTime BookingDate { get; set; }
         public int AdultTickets { get; set; }
         public int ChildTickets { get; set; }
@@ -20,5 +18,8 @@ namespace AmusementPark.Models
 
         public Subscription Subscription { get; set; }
         public int SubscriptionId { get; set; }
+
+        public Client Client { get; set; }
+        public int ClientId { get; set; }
     }
 }

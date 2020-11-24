@@ -26,12 +26,15 @@ namespace AmusementPark.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    PhoneNumber = table.Column<string>(nullable: false),
-                    Link = table.Column<string>(nullable: true)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    Link = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.PhoneNumber);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,18 +74,23 @@ namespace AmusementPark.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
                     BookingDate = table.Column<DateTime>(nullable: false),
                     AdultTickets = table.Column<int>(nullable: false),
                     ChildTickets = table.Column<int>(nullable: false),
                     Checked = table.Column<bool>(nullable: false),
                     Accepted = table.Column<bool>(nullable: false),
-                    SubscriptionId = table.Column<int>(nullable: false)
+                    SubscriptionId = table.Column<int>(nullable: false),
+                    ClientId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Booking", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Booking_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Booking_Subscriptions_SubscriptionId",
                         column: x => x.SubscriptionId,
@@ -205,9 +213,35 @@ namespace AmusementPark.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Booking_ClientId",
+                table: "Booking",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Booking_SubscriptionId",
                 table: "Booking",
                 column: "SubscriptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_Email",
+                table: "Clients",
+                column: "Email",
+                unique: true,
+                filter: "[Email] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_Link",
+                table: "Clients",
+                column: "Link",
+                unique: true,
+                filter: "[Link] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_PhoneNumber",
+                table: "Clients",
+                column: "PhoneNumber",
+                unique: true,
+                filter: "[PhoneNumber] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubscriptionAttractions_SubscriptionId",
@@ -226,13 +260,13 @@ namespace AmusementPark.Migrations
                 name: "Booking");
 
             migrationBuilder.DropTable(
-                name: "Clients");
-
-            migrationBuilder.DropTable(
                 name: "SubscriptionAttractions");
 
             migrationBuilder.DropTable(
                 name: "SubscriptionServices");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Attractions");

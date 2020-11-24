@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmusementPark.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201116141335_Init")]
+    [Migration("20201123143705_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,13 +101,10 @@ namespace AmusementPark.Migrations
                     b.Property<int>("ChildTickets")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SubscriptionId")
@@ -115,20 +112,42 @@ namespace AmusementPark.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("SubscriptionId");
 
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("AmusementPark.Models.Clients", b =>
+            modelBuilder.Entity("AmusementPark.Models.Client", b =>
                 {
-                    b.Property<string>("PhoneNumber")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("PhoneNumber");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("Link")
+                        .IsUnique()
+                        .HasFilter("[Link] IS NOT NULL");
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("[PhoneNumber] IS NOT NULL");
 
                     b.ToTable("Clients");
                 });
@@ -352,6 +371,12 @@ namespace AmusementPark.Migrations
 
             modelBuilder.Entity("AmusementPark.Models.Booking", b =>
                 {
+                    b.HasOne("AmusementPark.Models.Client", "Client")
+                        .WithMany("Bookings")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AmusementPark.Models.Subscription", "Subscription")
                         .WithMany()
                         .HasForeignKey("SubscriptionId")

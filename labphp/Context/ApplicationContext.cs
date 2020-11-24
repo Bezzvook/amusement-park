@@ -8,7 +8,7 @@ namespace AmusementPark.Models
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<Clients> Clients { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public DbSet<Booking> Booking { get; set; }
 
         public DbSet<Attraction> Attractions { get; set; }
@@ -32,6 +32,18 @@ namespace AmusementPark.Models
             modelBuilder.Entity<Subscription>()
             .Property(p => p.ChildPrice)
             .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Client>()
+            .HasIndex(u => u.Link)
+            .IsUnique();
+
+            modelBuilder.Entity<Client>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+            modelBuilder.Entity<Client>()
+            .HasIndex(u => u.PhoneNumber)
+            .IsUnique();
 
             modelBuilder.Entity<SubscriptionAttraction>()
                 .HasKey(c => new { c.AttractionId, c.SubscriptionId });
