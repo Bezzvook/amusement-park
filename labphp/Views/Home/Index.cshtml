@@ -62,7 +62,7 @@
 <div class="centerForm">
     <h1>Бронирование билетов</h1>
     <div class="form-group">
-        <form method="post" asp-action="AddBooking">
+        <form method="post" asp-action="AddBooking" asp-controller="Booking">
             <p>
                 <label asp-for="FullName">ФИО</label>
                 <input asp-for="FullName" class="form-control" placeholder="Иванов Иван Иванович" />

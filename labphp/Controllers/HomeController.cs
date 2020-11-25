@@ -36,45 +36,6 @@ namespace AmusementPark.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddBooking(Booking booking)
-        {
-            if (db.Clients.Any(ph => ph.PhoneNumber == booking.Client.PhoneNumber))
-            {
-                booking.Checked = false;
-                booking.Accepted = false;
-
-                db.Booking.Add(booking);
-                db.SaveChanges();
-            }
-
-            else
-            {
-                string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                Random random = new Random();
-
-                char[] chars = new char[36];
-                for (int i = 0; i < 36; i++)
-                {
-                    chars[i] = validChars[random.Next(0, validChars.Length)];
-                }
-
-                booking.Client.Link = new string(chars);
-
-                booking.Checked = false;
-                booking.Accepted = false;
-
-                db.Booking.Add(booking);
-                db.SaveChanges();
-            }
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

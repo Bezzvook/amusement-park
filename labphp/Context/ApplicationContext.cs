@@ -26,24 +26,19 @@ namespace AmusementPark.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Subscription>()
-            .Property(p => p.AdultPrice)
-            .HasColumnType("decimal(18,2)");
+            .Property(p => p.AdultPrice).HasColumnType("decimal(18,2)");
 
             modelBuilder.Entity<Subscription>()
             .Property(p => p.ChildPrice)
             .HasColumnType("decimal(18,2)");
 
-            modelBuilder.Entity<Client>()
-            .HasIndex(u => u.Link)
-            .IsUnique();
+            modelBuilder.Entity<Client>().HasIndex(u => u.Link).IsUnique();
+            modelBuilder.Entity<Client>().HasIndex(u => u.Email).IsUnique();
+            modelBuilder.Entity<Client>().HasIndex(u => u.PhoneNumber).IsUnique();
 
-            modelBuilder.Entity<Client>()
-            .HasIndex(u => u.Email)
-            .IsUnique();
-
-            modelBuilder.Entity<Client>()
-            .HasIndex(u => u.PhoneNumber)
-            .IsUnique();
+            modelBuilder.Entity<Client>().Property(t => t.Link).IsRequired();
+            modelBuilder.Entity<Client>().Property(t => t.Email).IsRequired();
+            modelBuilder.Entity<Client>().Property(t => t.PhoneNumber).IsRequired();
 
             modelBuilder.Entity<SubscriptionAttraction>()
                 .HasKey(c => new { c.AttractionId, c.SubscriptionId });

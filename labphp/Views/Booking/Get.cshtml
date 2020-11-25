@@ -1,0 +1,16 @@
+﻿@model AmusementPark.Models.Client
+
+<p>Вы находись в личном кабинете пользователя с почтой <b>@Model.Email</b> и номером телефона <b>@Model.PhoneNumber</b></p>
+
+<p>Список бронирований:</p>
+
+    @foreach (var item in Model.Bookings)
+    {
+        <p>Забронировано на имя: @item.FullName</p>
+        <p>Абонемент: @item.Subscription</p>
+        <p>Дата: @item.BookingDate</p>
+        <p>Взрослых билетов: @item.AdultTickets</p>
+        <p>Детский билетов: @item.ChildTickets</p>
+        <p>Подтверждение: @item.Accepted</p>
+        <br />
+    }

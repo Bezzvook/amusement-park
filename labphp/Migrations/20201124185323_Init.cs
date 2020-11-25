@@ -28,9 +28,9 @@ namespace AmusementPark.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Link = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true)
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    Link = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,22 +226,19 @@ namespace AmusementPark.Migrations
                 name: "IX_Clients_Email",
                 table: "Clients",
                 column: "Email",
-                unique: true,
-                filter: "[Email] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_Link",
                 table: "Clients",
                 column: "Link",
-                unique: true,
-                filter: "[Link] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_PhoneNumber",
                 table: "Clients",
                 column: "PhoneNumber",
-                unique: true,
-                filter: "[PhoneNumber] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubscriptionAttractions_SubscriptionId",
