@@ -8,6 +8,14 @@
     background-color: #2C3E50;
 }
 
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
 .wrapper {
     position: relative;
     min-height: 100%;

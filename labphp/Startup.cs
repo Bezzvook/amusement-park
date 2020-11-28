@@ -70,8 +70,9 @@ namespace AmusementPark
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{link?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

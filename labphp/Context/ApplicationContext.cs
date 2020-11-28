@@ -34,11 +34,9 @@ namespace AmusementPark.Models
 
             modelBuilder.Entity<Client>().HasIndex(u => u.Link).IsUnique();
             modelBuilder.Entity<Client>().HasIndex(u => u.Email).IsUnique();
-            modelBuilder.Entity<Client>().HasIndex(u => u.PhoneNumber).IsUnique();
 
             modelBuilder.Entity<Client>().Property(t => t.Link).IsRequired();
             modelBuilder.Entity<Client>().Property(t => t.Email).IsRequired();
-            modelBuilder.Entity<Client>().Property(t => t.PhoneNumber).IsRequired();
 
             modelBuilder.Entity<SubscriptionAttraction>()
                 .HasKey(c => new { c.AttractionId, c.SubscriptionId });

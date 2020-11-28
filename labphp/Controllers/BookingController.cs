@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AmusementPark.Features;
 using AmusementPark.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AmusementPark.Controllers
 {
@@ -14,18 +16,16 @@ namespace AmusementPark.Controllers
         public BookingController(ApplicationContext context)
         {
             db = context;
-        }
 
-        public IActionResult Get(string link)
-        {
-            if (link != null)
+            StaticData.names.Clear();
+            foreach (var item in db.Subscriptions)
             {
-                Client client = db.Clients.FirstOrDefault(p => p.Link == link);
-                if (client != null)
-                    client.Bookings = db.Booking.ToList();
-                    return View(client);
+                StaticData.names.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                });
             }
-            return Redirect("Index");
         }
 
         public IActionResult Index()
@@ -33,11 +33,11 @@ namespace AmusementPark.Controllers
             return View();
         }
 
+        //Бронирование
         [HttpPost]
         public async Task<IActionResult> AddBookingAsync(Booking booking)
         {
-            booking.Checked = false;
-            booking.Accepted = false;
+            booking.Status = Status.Submitted;
 
             if (db.Clients.Any(ph => ph.Email == booking.Client.Email))
             {
@@ -46,26 +46,59 @@ namespace AmusementPark.Controllers
 
             else
             {
-                string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                Random random = new Random();
-
-                char[] chars = new char[36];
-                for (int i = 0; i < 36; i++)
-                {
-                    chars[i] = validChars[random.Next(0, validChars.Length)];
-                }
-
-                booking.Client.Link = new string(chars);
+                booking.Client.Link = StaticData.getRandom();
             }
+            await GmailData.SendEmailAsync(booking.Client.Email, "Бронирование", new string(booking.FullName 
+                + ", спасибо за бронирование!\nСсылка на Ваш кабинет: " + "https://localhost:5001/Booking/Get/" + booking.Client.Link));
 
+            ViewBag.name = booking.FullName;
             db.Booking.Add(booking);
             db.SaveChanges();
-
-            ViewBag.Name = booking.FullName;
-
-            string l = "https://localhost:5001/Booking/Get/" + booking.Client.Link;
-            await GmailData.SendEmailAsync(booking.Client.Email, "Бронирование", new string(booking.FullName + ", спасибо за бронирование!\nСсылка на Ваш кабинет: " + l));
             return View();
+        }
+
+        //Личный кабинет
+        public IActionResult Get(string id)
+        {
+            if (id != null)
+            {
+                Client client = db.Clients.FirstOrDefault(p => p.Link == id);
+                if (client != null)
+                    client.Bookings = db.Booking.Where(h => h.Client.Link == id).ToList();
+                return View(client);
+            }
+            return RedirectToAction("Index","Home");
+        }
+
+        //Отмена бронирования с личного кабинета
+        [HttpGet]
+        [ActionName("Reject")]
+        public IActionResult ConfirmReject(int? id)
+        {
+            if (id != null)
+            {
+                Booking booking = db.Booking.FirstOrDefault(p => p.Id == id);
+                if (booking != null)
+                    return View(booking);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult Reject(int? id)
+        {
+            if (id != null)
+            {
+                Booking booking = db.Booking.FirstOrDefault(p => p.Id == id);
+                if (booking != null)
+                {
+                    Client client = db.Clients.FirstOrDefault(p => p.Id == booking.ClientId);
+                    booking.Status = Status.Rejected;
+                    db.SaveChanges();
+                    return Redirect("https://localhost:5001/Booking/Get/" + booking.Client.Link);
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
