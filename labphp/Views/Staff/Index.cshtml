@@ -1,3 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Персоналу";
-}
+﻿@model IEnumerable<AmusementPark.Models.Booking>
+
+<h2><a asp-controller="Staff" asp-action="SubscriptionEdit">Редактор абонементов</a></h2>
+<p>Список бронирований:</p>
+<table class="table table-striped table-hover table-bordered ctable">
+    <thead>
+        <tr>
+            <th>Дата</th>
+            <th>На имя</th>
+            <th>Номер телефона</th>
+            <th>Статус</th>
+            <th width="10%">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookingDate</td>
+                <td>@item.FullName</td>
+                <td>@item.PhoneNumber</td>
+                <td>
+                    <b>@item.Status.DisplayName()</b>
+                </td>
+                <td>
+                    @if (item.Status != Status.Rejected)
+                    {
+                        <a asp-controller="Staff" asp-action="Reject" asp-route-id="@item.Id" class="btn btn-danger btn-block btn-sm">Отменить</a>
+                    }
+                    @if (item.Status == Status.Submitted)
+                    {
+                        <a asp-controller="Staff" asp-action="Approve" asp-route-id="@item.Id" class="btn btn-success btn-block btn-sm">Подтвердить</a>
+                    }
+                    <a asp-controller="Staff" asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-block btn-sm">Подробности</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

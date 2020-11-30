@@ -1,0 +1,26 @@
+﻿@model AmusementPark.Models.Subscription
+
+<div>
+<h1>Создание нового абонемента</h1>
+<div class="form-group">
+    <form method="post" asp-action="CreateSubscription" asp-controller="Staff">
+        <p>
+            <label asp-for="Name">Название</label>
+            <input asp-for="Name" class="form-control" placeholder="Название абонемента" />
+        </p>
+        <p>
+            <label asp-for="Description">Описание</label>
+            <input asp-for="Description" class="form-control" placeholder="Описание абонемента" />
+        </p>
+        <p>
+            <label asp-for="AdultPrice">Цена билета для взрослого</label>
+            <input asp-for="AdultPrice" class="form-control" placeholder="Цена" />
+        </p>
+        <p>
+            <label asp-for="ChildPrice">Цена билета для ребёнка</label>
+            <input asp-for="ChildPrice" class="form-control"  placeholder="Цена"/>
+        </p>
+            <button type="submit" class="form-control">Создать</button>
+    </form>
+</div>
+</div>

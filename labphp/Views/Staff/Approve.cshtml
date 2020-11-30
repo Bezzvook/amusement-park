@@ -1,0 +1,14 @@
+﻿@model AmusementPark.Models.Booking
+
+<div class="centerForm w-75">
+    <div>
+        <p>Вы действительно хотите подтвердить бронирование за"<b>@Model.BookingDate</b> на имя <b>@Model.FullName"?</b></p>
+    </div>
+    <div>
+        <form method="post">
+            <div class="form-group">
+                <input type="submit" class="form-control btn-success" value="Подтвердить" />
+            </div>
+        </form>
+    </div>
+</div>

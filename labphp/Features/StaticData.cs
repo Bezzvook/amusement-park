@@ -11,6 +11,8 @@ namespace AmusementPark.Models
     public class StaticData
     {
         public static List<SelectListItem> names = new List<SelectListItem>();
+        public static List<SelectListItem> namesAttractions = new List<SelectListItem>();
+        public static List<SelectListItem> namesServices = new List<SelectListItem>();
         public static List<Attraction> Attractions = new List<Attraction>();
         public static List<Service> Services = new List<Service>();
         public static string getRandom()

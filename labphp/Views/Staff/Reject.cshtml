@@ -1,0 +1,14 @@
+﻿@model AmusementPark.Models.Booking
+
+<div class="centerForm w-75">
+    <div>
+        <p>Вы действительно хотите отменить бронирование за"<b>@Model.BookingDate</b> на имя <b>@Model.FullName"?</b></p>
+    </div>
+    <div>
+        <form method="post">
+            <div class="form-group">
+                <input type="submit" class="form-control btn-danger" value="Отменить" />
+            </div>
+        </form>
+    </div>
+</div>

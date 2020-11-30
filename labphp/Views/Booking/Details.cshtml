@@ -1,0 +1,46 @@
+﻿@model AmusementPark.Models.Booking
+    <div>
+        <p>Подробности бронирования № @Model.Id:</p>
+        <table class="table table-striped table-hover table-bordered ctable">
+            <thead>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Значение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Дата бронирования:</td>
+                    <td>@Model.BookingDate</td>
+                </tr>
+                <tr>
+                    <td>Забронировано на имя:</td>
+                    <td>@Model.FullName</td>
+                </tr>
+                <tr>
+                    <td>Абонемент:</td>
+                    <td>@Model.Subscription.Name</td>
+                </tr>
+                <tr>
+                    <td>Электронный адрес:</td>
+                    <td>@Model.Client.Email</td>
+                </tr>
+                <tr>
+                    <td>Номер телефона:</td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td>Количество билетов для взрослых:</td>
+                    <td>@Model.AdultTickets</td>
+                </tr>
+                <tr>
+                    <td>Количество билетов для детей:</td>
+                    <td>@Model.ChildTickets</td>
+                </tr>
+                <tr>
+                    <td>Статус бронирования:</td>
+                    <td>@Model.Status.DisplayName()</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

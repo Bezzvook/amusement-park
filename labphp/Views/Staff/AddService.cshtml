@@ -1,0 +1,17 @@
+﻿@model AmusementPark.Models.SubscriptionService
+<div>
+    <h3>Добавление сервис в абонемент</h3>
+    <div class="form-group">
+        <form method="post" asp-action="AddService" asp-controller="Staff">
+            <p>
+                <label asp-for="SubscriptionId">Выберите абонемент</label>
+                @Html.DropDownList("SubscriptionId", StaticData.names, new { @class = "form-control" })
+            </p>
+            <p>
+                <label asp-for="ServiceId">Выберите аттракцион</label>
+                @Html.DropDownList("ServiceId", StaticData.namesServices, new { @class = "form-control" })
+            </p>
+            <button type="submit" class="form-control">Добавить</button>
+        </form>
+    </div>
+</div>

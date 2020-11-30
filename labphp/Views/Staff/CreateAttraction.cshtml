@@ -1,0 +1,22 @@
+﻿@model AmusementPark.Models.Attraction
+
+<div>
+<h1>Добавление нового аттракциона</h1>
+<div class="form-group">
+    <form method="post" asp-action="CreateAttraction" asp-controller="Staff">
+        <p>
+            <label asp-for="Name">Название</label>
+            <input asp-for="Name" class="form-control" placeholder="Название аттракциона" />
+        </p>
+        <p>
+            <label asp-for="Description">Описание</label>
+            <input asp-for="Description" class="form-control" placeholder="Описание аттракциона" />
+        </p>
+        <p>
+            <label asp-for="MaxFreeSeat">Максимальное количество мест</label>
+            <input asp-for="MaxFreeSeat" class="form-control" placeholder="Количество мест" />
+        </p>
+            <button type="submit" class="form-control">Создать</button>
+    </form>
+</div>
+</div>

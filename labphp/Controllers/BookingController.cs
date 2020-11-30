@@ -57,6 +57,21 @@ namespace AmusementPark.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id != null)
+            {
+                Booking booking = db.Booking.FirstOrDefault(p => p.Id == id);
+                if (booking != null)
+                {
+                    booking.Client = db.Clients.FirstOrDefault(p => p.Id == booking.ClientId);
+                    return View(booking);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         //Личный кабинет
         public IActionResult Get(string id)
         {
@@ -64,8 +79,10 @@ namespace AmusementPark.Controllers
             {
                 Client client = db.Clients.FirstOrDefault(p => p.Link == id);
                 if (client != null)
-                    client.Bookings = db.Booking.Where(h => h.Client.Link == id).ToList();
-                return View(client);
+                {
+                    client.Bookings = db.Booking.Where(h => h.Client.Link == id).OrderByDescending(a => a.Id).ToList();
+                    return View(client);
+                }
             }
             return RedirectToAction("Index","Home");
         }
@@ -86,6 +103,36 @@ namespace AmusementPark.Controllers
 
         [HttpPost]
         public IActionResult Reject(int? id)
+        {
+            if (id != null)
+            {
+                Booking booking = db.Booking.FirstOrDefault(p => p.Id == id);
+                if (booking != null)
+                {
+                    Client client = db.Clients.FirstOrDefault(p => p.Id == booking.ClientId);
+                    booking.Status = Status.Rejected;
+                    db.SaveChanges();
+                    return Redirect("https://localhost:5001/Booking/Get/" + booking.Client.Link);
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        //Отмена бронирования с личного кабинета
+        [HttpGet]
+        [ActionName("Approve")]
+        public IActionResult ConfirmApprove(int? id)
+        {
+            if (id != null)
+            {
+                Booking booking = db.Booking.FirstOrDefault(p => p.Id == id);
+                if (booking != null)
+                    return View(booking);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult Approve(int? id)
         {
             if (id != null)
             {
