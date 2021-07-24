@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AmusementPark.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20201129175155_New1")]
-    partial class New1
+    [Migration("20201203100258_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,23 +86,29 @@ namespace AmusementPark.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdultTickets")
+                    b.Property<int?>("AdultTickets")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("BookingDate")
+                    b.Property<DateTime?>("BookingDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ChildTickets")
+                    b.Property<int?>("ChildTickets")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

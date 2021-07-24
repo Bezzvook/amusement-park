@@ -1,37 +1,38 @@
 ﻿@model AmusementPark.Models.Booking
-<div class="centerForm">
-    <h1>Бронирование билетов</h1>
-    <div class="form-group">
-        <form method="post" asp-action="AddBooking" asp-controller="Booking">
-            <p>
-                <label asp-for="FullName">ФИО</label>
-                <input asp-for="FullName" class="form-control" placeholder="Иванов Иван Иванович" />
-            </p>
-            <p>
-                <label asp-for="PhoneNumber">Номер телефона</label>
-                <input asp-for="PhoneNumber" class="form-control" placeholder="+380XXXXXXXXX" />
-            </p>
-            <p>
-                <label asp-for="Client.Email">Электронная почта</label>
-                <input asp-for="Client.Email" class="form-control" placeholder="example@gmail.com" />
-            </p>
-            <p>
-                <label asp-for="BookingDate">Дата</label>
-                <input asp-for="BookingDate" class="form-control" />
-            </p>
-            <p>
-                <label asp-for="AdultTickets">Взрослых</label>
-                <input asp-for="AdultTickets" class="form-control" placeholder="1" />
-            </p>
-            <p>
-                <label asp-for="ChildTickets">Детских</label>
-                <input asp-for="ChildTickets" class="form-control" placeholder="0" />
-            </p>
-            <p>
-                <label asp-for="SubscriptionId">Абонемент</label>
-                @Html.DropDownList("SubscriptionId", StaticData.names, new { @class = "form-control" })
-            </p>
-            <button type="submit" class="form-control">Забронировать</button>
-        </form>
+    <div class="centerForm">
+        <h1>Бронирование билетов</h1>
+        <div asp-validation-summary="All" class="text-danger">@ViewBag.dataError</div>
+        <div class="form-group">
+            <form method="post" asp-action="AddBooking" asp-controller="Booking">
+                <p>
+                    <label asp-for="FullName">ФИО</label>
+                    <input asp-for="FullName" class="form-control" placeholder="Иванов Иван Иванович" />
+                </p>
+                <p>
+                    <label asp-for="PhoneNumber">Номер телефона</label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="380XXXXXXXXX" />
+                </p>
+                <p>
+                    <label asp-for="Client.Email">Электронная почта</label>
+                    <input asp-for="Client.Email" class="form-control" placeholder="example@gmail.com" />
+                </p>
+                <p>
+                    <label asp-for="BookingDate">Дата</label>
+                    <input asp-for="BookingDate" class="form-control" />
+                </p>
+                <p>
+                    <label asp-for="AdultTickets">Взрослых</label>
+                    <input asp-for="AdultTickets" class="form-control" placeholder="1" />
+                </p>
+                <p>
+                    <label asp-for="ChildTickets">Детских</label>
+                    <input asp-for="ChildTickets" class="form-control" placeholder="0" />
+                </p>
+                <p>
+                    <label asp-for="SubscriptionId">Абонемент</label>
+                    @Html.DropDownList("SubscriptionId", StaticData.names, new { @class = "form-control" })
+                </p>
+                <button type="submit" class="form-control">Забронировать</button>
+            </form>
+        </div>
     </div>
-</div>

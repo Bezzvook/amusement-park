@@ -37,24 +37,36 @@ namespace AmusementPark.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBookingAsync(Booking booking)
         {
-            booking.Status = Status.Submitted;
-
-            if (db.Clients.Any(ph => ph.Email == booking.Client.Email))
+            if (!ModelState.IsValid)
             {
-                booking.Client = db.Clients.FirstOrDefault(p => p.Email == booking.Client.Email);
+                return View("Index");
             }
-
             else
             {
-                booking.Client.Link = StaticData.getRandom();
-            }
-            await GmailData.SendEmailAsync(booking.Client.Email, "Бронирование", new string(booking.FullName 
-                + ", спасибо за бронирование!\nСсылка на Ваш кабинет: " + "https://localhost:5001/Booking/Get/" + booking.Client.Link));
+                if (booking.BookingDate < DateTime.Now)
+                {
+                    ViewBag.dataError = "Некорректная дата";
+                    return View("Index");
+                }
+                booking.Status = Status.Submitted;
 
-            ViewBag.name = booking.FullName;
-            db.Booking.Add(booking);
-            db.SaveChanges();
-            return View();
+                if (db.Clients.Any(ph => ph.Email == booking.Client.Email))
+                {
+                    booking.Client = db.Clients.FirstOrDefault(p => p.Email == booking.Client.Email);
+                }
+
+                else
+                {
+                    booking.Client.Link = StaticData.getRandom();
+                }
+                await GmailData.SendEmailAsync(booking.Client.Email, "Бронирование", new string(booking.FullName
+                    + ", спасибо за бронирование!\nСсылка на Ваш кабинет: " + "https://localhost:5001/Booking/Get/" + booking.Client.Link));
+
+                ViewBag.name = booking.FullName;
+                db.Booking.Add(booking);
+                db.SaveChanges();
+                return View();
+            }
         }
 
         [HttpGet]

@@ -10,11 +10,22 @@ namespace AmusementPark.Models
     public class Booking
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Введите имя пользователя")]
         public string FullName { get; set; }
+
+        [Required(ErrorMessage = "Введите номер телефона")]
+        [StringLength(12, ErrorMessage = "Номер телефона состоять из 12 цифр")]
         public string PhoneNumber { get; set; }
-        public DateTime BookingDate { get; set; }
-        public int AdultTickets { get; set; }
-        public int ChildTickets { get; set; }
+
+        [Required(ErrorMessage = "Введите время бронирования")]
+        public DateTime? BookingDate { get; set; }
+
+        [Required(ErrorMessage = "Введите количество билетов для взрослых")]
+        public int? AdultTickets { get; set; }
+
+        [Required(ErrorMessage = "Введите количество билетов для детей")]
+        public int? ChildTickets { get; set; }
 
         public Status Status { get; set; }
 
